@@ -1,25 +1,41 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useAlbums, useUsers } from './hooks';
+import { Album, User } from './interfaces';
+import './App.scss';
 
-function App() {
+export const App = () => {
+
+  //const albums = useAlbums('https://jsonplaceholder.typicode.com/albums');
+  //const users = useUsers('https://jsonplaceholder.typicode.com/users');
+
+  let albums: Array<Album>[];
+  let users: Array<User>[];
+  
+  (async () => {const [albums, users] = await Promise.all([
+    useAlbums('https://jsonplaceholder.typicode.com/albums'),
+    useUsers('https://jsonplaceholder.typicode.com/users')
+  ])})();
+
+  const getGridItem = (item: Album) => {
+    const user = users.find(user => user.id === item.userId)?.name;
+    return (
+      <div
+        key={item.id}
+        className="grid-item">
+        <p>{item.title}</p>
+        {user && <p>{user}</p>}
+      </div>
+    );
+  };
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="grid">
+        {albums.map((album) => getGridItem(album))}
+      </div>
+    </>
   );
 }
 
