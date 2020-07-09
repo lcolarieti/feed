@@ -1,0 +1,1 @@
+export const DO_SEARCH: string = 'DO_SEARCH';

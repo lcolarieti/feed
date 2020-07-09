@@ -1,7 +1,11 @@
-export interface Album {
+export interface Post {
   userId: number;
   id: number;
   title: string;
+  body: string;
+  image: string;
+  showComment?: boolean;
+  visible: boolean;
 }
 
 export interface User {
@@ -9,27 +13,12 @@ export interface User {
   name: string;
   username: string;
   email: string;
-  address: Address;
-  phone: string;
-  website: string;
-  company: Company;
 }
 
-export interface Address {
-  street: string,
-  suite: string,
-  city: string,
-  zipcode: string,
-  geo: Geo
-}
-
-export interface Geo {
-  lat: string;
-  lng: string;
-}
-
-export interface Company {
+export interface Comment {
+  postId: number;
+  id: number;
   name: string;
-  catchPhrase: string;
-  bs: string;
+  email: string;
+  body: string;
 }
