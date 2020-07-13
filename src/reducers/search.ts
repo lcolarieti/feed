@@ -1,12 +1,12 @@
-import {Search, SearchActionTypes} from '../interfaces/search';
+import {ISearch, SearchActionTypes} from '../interfaces/search';
 import {DO_SEARCH} from '../constants';
 
-export const initialState: Search = {
+export const initialState: ISearch = {
   text: '',
   type: 'user'
 };
 
-const searchReducer = (state = initialState, action: SearchActionTypes): Search => {
+const searchReducer = (state = initialState, action: SearchActionTypes): ISearch => {
   switch (action.type) {
     case DO_SEARCH:
       return action.payload;

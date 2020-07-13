@@ -1,0 +1,17 @@
+.grid-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include transform(translate(-50%, -50%));
+  text-align: center;
+
+  svg {
+    font-size: 30px;
+  }
+
+  p {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+}

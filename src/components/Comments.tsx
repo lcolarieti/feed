@@ -1,13 +1,13 @@
 import React from 'react';
-import { Comment } from '../interfaces';
+import {IComment} from '../interfaces/comments';
 import UserAvatarAndName from './UserAvatarAndName';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowCircleLeft } from '@fortawesome/free-solid-svg-icons';
 
 
-const Comments: React.FC<{items: Comment[], handleBackClick: React.ReactEventHandler}> = ({ items, handleBackClick }) => {
+const Comments: React.FC<{items: IComment[], handleBackClick: React.ReactEventHandler}> = ({ items, handleBackClick }) => {
 
-  const getCommentItem = (comment: Comment) => {
+  const getCommentItem = (comment: IComment) => {
     return <li key={`${comment.postId}-${comment.id}`}>
       <UserAvatarAndName username={comment.name} />
       <p className="body">{comment.body}</p>
@@ -20,7 +20,7 @@ const Comments: React.FC<{items: Comment[], handleBackClick: React.ReactEventHan
         <FontAwesomeIcon icon={faArrowCircleLeft} />
       </button>
       <h3>Comments ({items.length})</h3>
-      <ul>{items.map((comment: Comment) => getCommentItem(comment))}</ul>
+      <ul>{items.map((comment: IComment) => getCommentItem(comment))}</ul>
     </div>
   );
 }

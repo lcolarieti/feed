@@ -1,17 +1,17 @@
 import {DO_SEARCH} from '../constants';
 
-export interface Search {
+export interface ISearch {
   readonly text: string;
   readonly type: string;
 }
 
 export interface SearchState {
-  search: Search;
+  search: ISearch;
 }
 
 interface DoSearchAction {
   type: typeof DO_SEARCH;
-  payload: Search;
+  payload: ISearch;
 }
 
 export type SearchActionTypes = DoSearchAction;

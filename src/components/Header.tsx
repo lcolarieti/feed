@@ -1,7 +1,7 @@
-import React, {ChangeEvent, useReducer} from 'react';
+import React, {ChangeEvent} from 'react';
 import {doSearch} from '../actions/search';
-import {initialState} from '../reducers/search';
-import searchReducer from '../reducers/search';
+import {ISearch, SearchState} from '../interfaces/search';
+import {connect, ConnectedProps} from 'react-redux';
 
 
 interface SearchType {
@@ -9,8 +9,21 @@ interface SearchType {
   value: string;
 }
 
-const Header: React.FC = () => {
-  const [state, dispatch] = useReducer(searchReducer, initialState);
+const mapStateToProps = (state: SearchState) => ({
+  search: state.search
+})
+
+const mapDispatchToProps = {
+  doSearchAction: (search: ISearch) => doSearch(search)
+};
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Props = PropsFromRedux;
+
+const Header: React.FC<Props> = (props: Props) => {
 
   const selects: SearchType[] = [
     {text: 'User', value: 'user'},
@@ -18,12 +31,12 @@ const Header: React.FC = () => {
   ];
 
   const handleSearchTextChange = (event: ChangeEvent<HTMLInputElement>) =>  {
-    dispatch(doSearch({type: state.type, text: event.target.value.trim()}));
+    props.doSearchAction({type: props.search.type, text: event.target.value});
   };
 
   const handleSearchTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    if (event.target.value === state.type) return;
-    dispatch(doSearch({type: event.target.value, text: state.text}));
+    if (event.target.value === props.search.type) return;
+    props.doSearchAction({type: event.target.value, text: ''});
   };
 
   return (
@@ -33,11 +46,11 @@ const Header: React.FC = () => {
           <input
             type="text"
             placeholder="Search by..."
-            value={state.text}
+            value={props.search.text}
             onChange={(e: ChangeEvent<HTMLInputElement>) => handleSearchTextChange(e)}
           />
           <select
-            defaultValue={state.type}
+            defaultValue={props.search.type}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => handleSearchTypeChange(e)}
           >
             {
@@ -54,4 +67,4 @@ const Header: React.FC = () => {
   );
 }
 
-export default Header;
+export default connector(Header);

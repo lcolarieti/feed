@@ -1,5 +1,5 @@
 import {action} from 'typesafe-actions';
 import {DO_SEARCH} from '../constants';
-import {Search} from '../interfaces/search';
+import {ISearch} from '../interfaces/search';
 
-export const doSearch = (search: Search) => action(DO_SEARCH, search);
+export const doSearch = (search: ISearch) => action(DO_SEARCH, search);
