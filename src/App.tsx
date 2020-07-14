@@ -13,6 +13,7 @@ import {setLoading} from './actions/loading';
 import Card from './components/Card';
 import {RootState} from './reducers/combineReducers';
 import GridMessage from './components/GridMessage';
+import Footer from './components/Footer';
 
 
 const mapStateToProps = (state: RootState) => ({
@@ -100,6 +101,7 @@ const App: React.FC<Props> = (props: Props) => {
           ]}
         </div>
       </div>
+      <Footer count={posts.filter(post => post.visible).length} />
     </>
   );
 }

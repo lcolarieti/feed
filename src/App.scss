@@ -1,3 +1,5 @@
+$mobile-breakpoint: 790px;
+
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
 
 body {
@@ -27,6 +29,7 @@ body {
 @import './styles/loading';
 @import './styles/comments';
 @import './styles/header';
+@import './styles/footer';
 @import './styles/user-avatar-name';
 @import './styles/grid-message';
 

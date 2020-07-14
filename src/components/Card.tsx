@@ -38,6 +38,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 const Card: React.FC<Props> = (props: Props) => {
   const {comments, users, post, setPostsAction, posts} = props;
   const username: string | undefined = (users.find((user: IUser) => user.id === post.userId))?.username;
+  const user: IUser | undefined = (users.find((user: IUser) => user.id === post.userId));
   const postComments = comments.filter((comment: IComment) => post.id === comment.postId);
 
   const toggleComments = (event: React.MouseEvent, comments: Array<IComment>, postId: number): void => {
@@ -51,7 +52,7 @@ const Card: React.FC<Props> = (props: Props) => {
       id={`post-${post.id}`}
       className="grid-item">
       <div className="header">
-        <UserAvatarAndName username={username} />
+        <UserAvatarAndName username={username} user={user} />
       </div>
       <div className="content">
         <h3>{post.title}</h3>

@@ -29,5 +29,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-transform: capitalize;
+
+    a {
+      color: inherit;
+    }
   }
 }
