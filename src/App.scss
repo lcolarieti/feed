@@ -24,6 +24,10 @@ body {
   width: 100%;
 }
 
+.shared-components-padding {
+  padding: 90px 0 40px 0;
+}
+
 @import './styles/mixin';
 @import './styles/grid';
 @import './styles/loading';

@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {doSearch} from '../actions/search';
-import {ISearch, SearchState} from '../interfaces/search';
+import {ISearch} from '../interfaces/search';
 import {connect, ConnectedProps} from 'react-redux';
+import {RootState} from '../reducers/combineReducers';
 
 
 interface SearchType {
@@ -9,7 +10,7 @@ interface SearchType {
   value: string;
 }
 
-const mapStateToProps = (state: SearchState) => ({
+const mapStateToProps = (state: RootState) => ({
   search: state.search
 })
 

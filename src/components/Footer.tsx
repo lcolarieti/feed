@@ -1,7 +1,16 @@
 import React from 'react';
+import {connect, ConnectedProps} from 'react-redux';
 
 
-const Footer: React.FC<{count: number}> = ({count}) => {
+const connector = connect(null, {});
+type PropsFromRedux = ConnectedProps<typeof connector>
+type FooterProps = {
+  count: number
+};
+type Props = FooterProps & PropsFromRedux;
+
+const Footer: React.FC<Props> = (props) => {
+  const {count} = props;
 
   return (
     <footer>
@@ -16,4 +25,4 @@ const Footer: React.FC<{count: number}> = ({count}) => {
   );
 }
 
-export default Footer;
+export default connector(Footer);
